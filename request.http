@@ -1,0 +1,47 @@
+### Delete existing Elasticsearch index
+DELETE http://localhost:9200/beer-sheva-streets
+
+### Create Elasticsearch index with mapping
+PUT http://localhost:9200/beer-sheva-streets
+Content-Type: application/json
+
+< ./mappings/mapping.json
+
+### Test Elasticsearch analyzer (Hebrew Ngram)
+POST http://localhost:9200/beer-sheva-streets/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "hebrew_ngram_analyzer",
+  "text": "אוסישקין"
+}
+
+### Show Elasticsearch index mappings
+GET http://localhost:9200/beer-sheva-streets/_mapping
+
+### Search Elasticsearch index
+GET http://localhost:9200/beer-sheva-streets/_search?size=1&pretty
+
+### Get document by ID
+GET http://localhost:9200/beer-sheva-streets/_doc/5JtHipUBnPnxN7nVPKS8?pretty
+
+
+### Free Search
+GET http://localhost:5000/search?query=גורדון&searchType=free
+
+### Exact Search
+GET http://localhost:5000/search?query=גורדון&searchType=exact
+
+### Exact Search Number
+GET http://localhost:5000/search?query=238&searchType=exact
+
+### Full Expression Search
+GET http://localhost:5000/search?query=אוס&searchType=full
+
+### Full Expression Search Number
+GET http://localhost:5000/search?query=238&searchType=full
+
+### Soft Delete Record (mark as deleted)
+PUT http://localhost:5000/delete/5JtHipUBnPnxN7nVPKS8
+
+

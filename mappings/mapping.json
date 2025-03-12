@@ -1,0 +1,66 @@
+{
+    "settings": {
+        "index.max_ngram_diff": 10,
+        "analysis": {
+            "analyzer": {
+                "hebrew_ngram_analyzer": {
+                    "tokenizer": "hebrew_ngram_tokenizer",
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            },
+            "tokenizer": {
+                "hebrew_ngram_tokenizer": {
+                    "type": "ngram",
+                    "min_gram": 2,
+                    "max_gram": 10,
+                    "token_chars": [
+                        "letter",
+                        "digit"
+                    ]
+                }
+            }
+        }
+    },
+    "mappings": {
+        "properties": {
+            "שכונה": {
+                "type": "text",
+                "analyzer": "hebrew_ngram_analyzer",
+                "search_analyzer": "standard"
+            },
+            "קוד": {
+                "type": "integer",
+                "fields": {
+                    "keyword": { "type": "keyword" }
+                }
+            },
+            "סוג": { "type": "keyword" },
+            "קבוצה_נוספת": { "type": "keyword" },
+            "קבוצה": { "type": "keyword" },
+            "שם_מישני": {
+                "type": "text",
+                "analyzer": "hebrew_ngram_analyzer",
+                "search_analyzer": "standard"
+            },
+            "תואר": { "type": "text" },
+            "שם_ראשי": {
+                "type": "text",
+                "fields": {
+                    "ngram_name": {
+                        "type": "text",
+                        "analyzer": "hebrew_ngram_analyzer",
+                        "search_analyzer": "standard"
+                    },
+                    "exact_name": {
+                        "type": "text",
+                        "analyzer": "standard",
+                        "search_analyzer": "standard"
+                    }
+                }
+            },
+            "isDeleted": { "type": "boolean" }
+        }
+    }
+}
