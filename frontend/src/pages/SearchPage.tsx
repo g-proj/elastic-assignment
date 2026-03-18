@@ -3,7 +3,7 @@ import axios from 'axios';
 import SearchBar from '../components/SearchBar';
 import SearchResults from '../components/SearchResults';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const SearchPage: React.FC = () => {
     const [results, setResults] = useState<any[]>([]);
