@@ -1,5 +1,5 @@
 # Use Node.js as base
-FROM node:18
+FROM node:22
 
 # Set the working directory
 WORKDIR /app
