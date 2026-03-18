@@ -18,7 +18,7 @@ services:
       - elasticsearch
     environment:
       - NODE_ENV=production
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTIC_URL=http://elasticsearch:9200
     ports:
       - "5000:5000"
 
